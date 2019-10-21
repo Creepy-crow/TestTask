@@ -7,7 +7,7 @@
 
     <link rel="icon" href="#">
 
-    <title>Offcanvas template for Bootstrap</title>
+    <title>API</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/offcanvas/">
 

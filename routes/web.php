@@ -10,14 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('login', 'Auth\LoginController@login')->name('sing_in');
-Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-Route::get('login/{github}', 'Auth\LoginController@redirectToProvider')->name('login');
-Route::get('login/{github}/callback','Auth\LoginController@handleProviderCallback');
-Route::get('search', 'TaskController@searchUsers');
-Route::get('user', 'TaskController@user')->name('user');
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+    Route::get('search', 'TaskController@searchUsers');
+    Route::get('user', 'TaskController@user')->name('user');
+    Route::get('/home', 'TaskController@showUserData')->name('home');
 });
-Route::get('/home', 'TaskController@showUserData')->name('home');
+Route::get('login', 'Auth\LoginController@login')->name('login');
+Route::get('login/{github}', 'Auth\LoginController@redirectToProvider')->name('sing_in');
+Route::get('login/{github}/callback', 'Auth\LoginController@handleProviderCallback');
+
+
